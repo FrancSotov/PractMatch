@@ -1,0 +1,7 @@
+{
+  "name": "tinderLaboral",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
