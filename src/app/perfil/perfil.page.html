@@ -1,13 +1,77 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>perfil</ion-title>
+    <ion-title>Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">perfil</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding ion-text-center">
+  <!-- Contenedor para el fondo circular -->
+  <div class="background-container"></div>
+
+  <!-- Contenedor para la foto de perfil, nombre, carrera y iconos -->
+  <ion-grid class="ion-justify-content-end ion-align-items-end">
+    <ion-row>
+      <ion-col size="12">
+        <!-- Foto de perfil centrada -->
+        <ion-icon name="person-circle-outline" class="profile-icon"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <!-- Nombre del usuario -->
+        <ion-label style="background-color: transparent; color: #fff; margin: 0;">
+          <h2>Juan Perez</h2>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <!-- Carrera -->
+        <ion-label class="transparent-background">
+          <h2>Ing informatica</h2>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="transparent-background">
+        <!-- Iconos -->
+        <ion-list lines="none">
+          <ion-item>
+            <ion-icon name="settings-outline" class="ion-margin-end"></ion-icon>
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    
+  </ion-grid>
+
+  <!-- Área de detalles del perfil -->
+  <ion-list class="ion-margin-top">
+    <ion-item>
+      <ion-label>Palabras Claves:</ion-label>
+      <ion-text>
+        <ion-chip>Agregar</ion-chip>
+        <ion-chip>Otras palabras clave</ion-chip>
+        <!-- Agrega más chips según sea necesario -->
+      </ion-text>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+<style>
+  .background-container {
+    width: 100%;
+    height: 50vh;
+    background-color: #4a90e2;
+    clip-path: ellipse(50% 100% at 50% 0%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  .transparent-background {
+    background-color: transparent !important;
+  }
+</style>

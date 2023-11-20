@@ -1,13 +1,51 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>ofertas-detalle</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle de Oferta</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">ofertas-detalle</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <!-- Detalle de la Oferta -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Desarrollador Web</ion-card-title>
+      <ion-card-subtitle>Empresa XYZ</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>
+        Estamos buscando un desarrollador web con habilidades en HTML, CSS y JavaScript.
+        Únete a nuestro equipo para trabajar en proyectos emocionantes.
+      </p>
+      <p>
+        En esta posición, tendrás la oportunidad de contribuir al desarrollo de aplicaciones web
+        y participar en el diseño de interfaces de usuario.
+      </p>
+      <p>
+        Buscamos a alguien apasionado por la tecnología y con una sólida comprensión de los
+        principios de desarrollo web modernos.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Palabras Claves -->
+  <ion-card class="ion-margin-top">
+    <ion-card-header>
+      <ion-card-title>Palabras Claves</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-chip>Agregar</ion-chip>
+      <ion-chip>HTML</ion-chip>
+      <ion-chip>CSS</ion-chip>
+      <ion-chip>JavaScript</ion-chip>
+      <ion-chip>Desarrollo Web</ion-chip>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Botón de Postular -->
+  <ion-button expand="full" class="ion-margin-top">Postular</ion-button>
 </ion-content>
