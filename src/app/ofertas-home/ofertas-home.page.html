@@ -11,39 +11,20 @@
     </ion-toolbar>
   </ion-header>
 
-  <!-- Oferta de Práctica 1 -->
-  <ion-card style="padding-bottom: 100px;" class="col-lg-5 col-md-8 mx-auto">
+  <ion-card *ngFor="let oferta of ofertas" style="padding-bottom: 100px;" class="col-lg-5 col-md-8 mx-auto">
     <ion-card-header>
-      <ion-card-title>Desarrollador Web</ion-card-title>
-      <ion-card-subtitle>Empresa XYZ</ion-card-subtitle>
+      <ion-card-title>{{ oferta.oferta }}</ion-card-title>
+      <ion-card-subtitle>{{ oferta.empresa }}</ion-card-subtitle>
     </ion-card-header>
 
     <ion-card-content>
-      Estamos buscando un desarrollador web con habilidades en HTML, CSS y JavaScript. Únete a nuestro equipo para trabajar en proyectos emocionantes.
+      {{ oferta.descripcion }}
     </ion-card-content>
 
     <ion-item>
       <ion-icon name="star" slot="start"></ion-icon>
-      <ion-label>Compatibilidad: 4.5/5</ion-label>
-      <ion-button fill="clear" slot="end">Postular</ion-button>
-    </ion-item>
-  </ion-card>
-
-  <!-- Oferta de Práctica 2 -->
-  <ion-card style="padding-bottom: 100px;" class="col-lg-5 col-md-8 mx-auto">
-    <ion-card-header>
-      <ion-card-title>Analista de Datos</ion-card-title>
-      <ion-card-subtitle>Empresa ABC</ion-card-subtitle>
-    </ion-card-header>
-
-    <ion-card-content>
-      Únete a nuestro equipo como analista de datos y trabaja en proyectos analíticos desafiantes. Buscamos personas apasionadas por los datos y el análisis.
-    </ion-card-content>
-
-    <ion-item>
-      <ion-icon name="star" slot="start"></ion-icon>
-      <ion-label>Compatibilidad: 3.0/5</ion-label>
-      <ion-button fill="clear" slot="end">Postular</ion-button>
+      <ion-label>Compatibilidad: {{ oferta.compatibilidad }}/5</ion-label>
+      <ion-button fill="clear" slot="end" (click)="verDetalleOferta(oferta.link)">Postular</ion-button>
     </ion-item>
   </ion-card>
 </ion-content>
