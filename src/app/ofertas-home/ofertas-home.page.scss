@@ -1,0 +1,21 @@
+ion-content {
+    --background: linear-gradient(to bottom, #4a90e2 70%, #ffff00 100%);
+  }
+  
+  ion-card {
+    --ion-background-color: rgb(55, 76, 168); /* Fondo transparente para permitir que el degradado se muestre */
+    margin-bottom: 20px;
+  }
+  
+  ion-card-title,
+  ion-card-subtitle,
+  ion-card-content,
+  ion-label {
+    color: #fff; /* Color del texto en las tarjetas y la compatibilidad (blanco) */
+  }
+  
+  ion-button {
+    --background: #f29407; /* Color del botón de postular (amarillo) */
+    color: #fff; /* Color del texto del botón de postular (blanco) */
+  }
+  
