@@ -21,7 +21,7 @@
         <!-- Nombre del usuario -->
         <ion-item *ngIf="!modificando">
           <ion-label position="floating">Nombre</ion-label>
-          <ion-input [(ngModel)]="nombre" type="text"></ion-input>
+          <ion-input [(ngModel)]="nombre" type="text" disabled></ion-input>
         </ion-item>
         <ion-item *ngIf="modificando">
           <ion-label position="floating">Nuevo Nombre</ion-label>
@@ -31,14 +31,30 @@
     </ion-row>
     <ion-row>
       <ion-col size="12">
+        <!-- Apellido del usuario -->
+        <ion-item *ngIf="!modificando">
+          <ion-label position="floating">Apellido</ion-label>
+          <ion-input [(ngModel)]="apellido" type="text" disabled></ion-input>
+        </ion-item>
+        <ion-item *ngIf="modificando">
+          <ion-label position="floating">Nuevo Apellido</ion-label>
+          <ion-input [(ngModel)]="nuevoApellido" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
         <!-- Carrera -->
         <ion-item *ngIf="!modificando">
           <ion-label position="floating">Carrera</ion-label>
-          <ion-input [(ngModel)]="carrera" type="text"></ion-input>
+          <ion-input [(ngModel)]="carrera" type="text" disabled></ion-input>
         </ion-item>
         <ion-item *ngIf="modificando">
           <ion-label position="floating">Nueva Carrera</ion-label>
-          <ion-input [(ngModel)]="nuevaCarrera" type="text"></ion-input>
+          <ion-select [(ngModel)]="nuevaCarrera" placeholder="Seleccionar" (ionChange)="actualizarPalabrasClaves()">
+            <ion-select-option value="Ing. Mecanica y Autotronica">Ing. Mecanica y Autotronica</ion-select-option>
+            <ion-select-option value="Ing. Informática">Ing. Informática</ion-select-option>
+          </ion-select>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -62,6 +78,14 @@
     </ion-item>
     <ion-item *ngFor="let keyword of palabrasClavesSeleccionadas">
       {{ keyword }}
+      <ion-icon (click)="eliminarPalabraClave(keyword)" name="close-circle-outline" class="delete-icon"></ion-icon>
     </ion-item>
   </ion-list>
+
+  <!-- Botón flotante en la parte inferior similar al de ofertas-home -->
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="irAOfertasHome()">
+      <ion-icon name="clipboard"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

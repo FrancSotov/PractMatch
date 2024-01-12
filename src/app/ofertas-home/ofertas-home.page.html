@@ -1,4 +1,3 @@
-User
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Ofertas de Prácticas</ion-title>
@@ -12,7 +11,7 @@ User
     </ion-toolbar>
   </ion-header>
 
-  <ion-card *ngFor="let oferta of ofertas" style="padding-bottom: 100px;" class="col-lg-5 col-md-8 mx-auto">
+  <ion-card *ngFor="let oferta of ofertas" class="col-lg-5 col-md-8 mx-auto">
     <ion-card-header>
       <ion-card-title>{{ oferta.oferta }}</ion-card-title>
       <ion-card-subtitle>{{ oferta.empresa }}</ion-card-subtitle>
@@ -22,11 +21,24 @@ User
       {{ oferta.descripcion }}
     </ion-card-content>
 
+    <ion-item *ngIf="oferta.tags">
+      <ion-label class="label">Tags:</ion-label>
+      <div class="tag-container">
+        <div *ngFor="let tag of oferta.tags" [ngClass]="{'tag': true, 'user-match': esTagCoincidente(tag)}">
+          {{ tag }}
+        </div>
+      </div>
+    </ion-item>
+
     <ion-item>
-      <ion-icon name="star" slot="start"></ion-icon>
-      <ion-label>Compatibilidad: {{ oferta.compatibilidad }}/5</ion-label>
-      <ion-button fill="clear" slot="end" (click)="verDetalleOferta(oferta.link)">Postular</ion-button>
+      <ion-button fill="clear" slot="end" (click)="verDetalleOferta(oferta.link)" class="postular-button">Postular</ion-button>
     </ion-item>
   </ion-card>
+
+  <!-- Botón flotante para redirigir a la página de perfil -->
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="irAPerfil()">
+      <ion-icon name="person"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
- 

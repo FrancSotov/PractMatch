@@ -1,21 +1,53 @@
+ion-card {
+  --ion-background-color: rgb(55, 76, 168);
+  margin-bottom: 20px;
+  width: auto;
+}
+
+ion-card-title,
+ion-card-subtitle,
+ion-card-content,
+ion-label {
+  color: #fff;
+}
+
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.tag-container .tag {
+  background-color: #a1a1a1;
+  color: #fff;
+  border-radius: 15px;
+  padding: 8px 12px;
+  margin-bottom: 5px;
+}
+
+.tag-container .tag.user-match {
+  background-color: #4caf50; /* Verde cuando coincide con el usuario */
+}
+
+@media (max-width: 576px) {
+  .tag-container .tag {
+    display: block;
+  }
+}
+
 ion-content {
-    --background: linear-gradient(to bottom, #4a90e2 70%, #ffff00 100%);
+  --background: url('../../assets/backgrounf.jpeg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.postular-button {
+  --background: #f29407;
+  --color: #fff;
+  border-radius: 15px;
+}
+
+ion-item {
+  .label {
+    color: #fff;
   }
-  
-  ion-card {
-    --ion-background-color: rgb(55, 76, 168); /* Fondo transparente para permitir que el degradado se muestre */
-    margin-bottom: 20px;
-  }
-  
-  ion-card-title,
-  ion-card-subtitle,
-  ion-card-content,
-  ion-label {
-    color: #fff; /* Color del texto en las tarjetas y la compatibilidad (blanco) */
-  }
-  
-  ion-button {
-    --background: #f29407; /* Color del botón de postular (amarillo) */
-    color: #fff; /* Color del texto del botón de postular (blanco) */
-  }
-  
+}

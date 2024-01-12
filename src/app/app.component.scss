@@ -114,3 +114,13 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+ion-app {
+  background-image: url('../assets/backgrounf.jpeg'); /* Ajusta la ruta según la ubicación de tu imagen */
+  background-size: cover; /* Ajusta el tamaño del fondo según tus necesidades */
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100%; /* Ajusta la altura según tus necesidades */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}

@@ -1,32 +1,26 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../app/auth.guard';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'folder/Inbox',
-    pathMatch: 'full'
-  },
-  {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  },
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
     path: 'perfil',
-    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
+    loadChildren: () => import('./perfil/perfil.module').then(m => m.PerfilPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'ofertas-home',
-    loadChildren: () => import('./ofertas-home/ofertas-home.module').then( m => m.OfertasHomePageModule)
+    loadChildren: () => import('./ofertas-home/ofertas-home.module').then(m => m.OfertasHomePageModule),
+    canActivate: [AuthGuard]
   },
   {
-    path: 'ofertas-detalle',
-    loadChildren: () => import('./ofertas-detalle/ofertas-detalle.module').then( m => m.OfertasDetallePageModule)
-  }
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+  },
+  {
+    path: 'sign-up',
+    loadChildren: () => import('./sign-up/sign-up.module').then(m => m.SignUpPageModule)
+  },
 ];
 
 @NgModule({

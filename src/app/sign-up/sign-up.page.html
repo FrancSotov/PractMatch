@@ -1,0 +1,36 @@
+<!-- sign-up.page.html -->
+
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Registrarse</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="signup-container">
+    <!-- Coloca el logo arriba del formulario -->
+    <ion-img class="logo" src="assets/logo.png" alt="Logo de la aplicación"></ion-img>
+
+    <form (ngSubmit)="register()" class="ion-padding">
+      <ion-list>
+        <ion-item lines="full">
+          <ion-label position="floating">Correo Electrónico</ion-label>
+          <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="full">
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <ion-button expand="full" type="submit">Registrarse</ion-button>
+    </form>
+
+    <div class="separator"></div>
+
+    <div class="login-link">
+      <p>¿Ya tienes una cuenta? <a routerLink="/login">Inicia sesión aquí</a></p>
+    </div>
+  </div>
+</ion-content>
