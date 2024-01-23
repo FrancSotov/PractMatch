@@ -1,9 +1,20 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
 .logo-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px; /* Espaciado opcional */
+  max-width: 200px; /* Adjust the value based on your preference */
+  width: 100%;
+  margin-left: 40px; /* Adjust the value based on your preference */
 }
+
 
 .google-button {
   display: flex;

@@ -1,14 +1,15 @@
 ion-card {
-  --ion-background-color: rgb(55, 76, 168);
+  --ion-background-color: rgba(0, 0, 0); /* Fondo con opacidad solo en ion-card */
   margin-bottom: 20px;
   width: auto;
+  opacity: 0.7;
 }
 
 ion-card-title,
 ion-card-subtitle,
 ion-card-content,
 ion-label {
-  color: #fff;
+  color: #ffffff;
 }
 
 .tag-container {
@@ -19,14 +20,14 @@ ion-label {
 
 .tag-container .tag {
   background-color: #a1a1a1;
-  color: #fff;
+  color: #000000;
   border-radius: 15px;
   padding: 8px 12px;
   margin-bottom: 5px;
 }
 
 .tag-container .tag.user-match {
-  background-color: #4caf50; /* Verde cuando coincide con el usuario */
+  background-color: #8edb90; /* Verde cuando coincide con el usuario */
 }
 
 @media (max-width: 576px) {
@@ -40,8 +41,9 @@ ion-content {
   background-size: cover;
 }
 
-.postular-button {
-  --background: #f29407;
+/* Estilo para el botón de postular dentro de ion-card */
+ion-card .postular-button {
+  --background: #2B9141; /* Fondo del botón sin opacidad */
   --color: #fff;
   border-radius: 15px;
 }

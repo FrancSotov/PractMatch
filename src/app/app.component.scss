@@ -1,5 +1,5 @@
 ion-menu ion-content {
-  --background: var(--ion-item-background, var(--ion-background-color, #4a90e2));
+  --background: var(--ion-item-background, var(--ion-background-color, #000000));
 }
 
 ion-menu.md ion-content {
@@ -7,7 +7,7 @@ ion-menu.md ion-content {
   --padding-end: 8px;
   --padding-top: 20px;
   --padding-bottom: 20px;
-  background-color: #314acf; /* Cambiado a azul */
+  background-color: #000000; /* Cambiado a azul */
 }
 
 ion-menu.md ion-list {

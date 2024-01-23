@@ -4,7 +4,7 @@ ion-content {
 }
 
 .custom-button {
-  --background: #ffff00;
+  --background: #F1B634;
   --color: #000;
 }
 
@@ -23,4 +23,59 @@ ion-item {
 
 ion-select {
   width: 100%;
+}
+/* Estilos adicionales para centrar y ajustar el botón de modificar */
+ion-grid {
+  max-width: 400px; /* Ajusta el ancho máximo del ion-grid según tus preferencias */
+}
+
+.custom-button {
+  white-space: nowrap; /* Evita que el texto del botón se divida en varias líneas */
+}
+
+/* Estilos para centrar el contenido de ion-content */
+ion-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Estilos adicionales para el área de detalles del perfil */
+ion-list {
+  width: 100%; /* Ajusta el ancho del ion-list al 100% del contenedor padre */
+}
+
+/* Estilos adicionales para el botón flotante */
+ion-fab-button {
+  width: 40px; /* Ajusta el ancho del botón flotante según tus preferencias */
+  height: 40px; /* Ajusta la altura del botón flotante según tus preferencias */
+}
+/* Estilos adicionales para centrar y ajustar el botón de modificar */
+ion-grid {
+  max-width: 400px; /* Ajusta el ancho máximo del ion-grid según tus preferencias */
+}
+
+.custom-button {
+  white-space: nowrap; /* Evita que el texto del botón se divida en varias líneas */
+  background-color: #F1B634; /* Cambia el color del botón a amarillo (#F1B634) */
+  width: fit-content; /* Ajusta el ancho del botón según el contenido del texto */
+  margin: 10px 0; /* Añade un margen superior e inferior para separar el botón de otros elementos */
+}
+
+/* Estilos para centrar el contenido de ion-content */
+ion-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Estilos adicionales para el área de detalles del perfil */
+ion-list {
+  width: 100%; /* Ajusta el ancho del ion-list al 100% del contenedor padre */
+}
+
+/* Estilos adicionales para el botón flotante */
+ion-fab-button {
+  width: 40px; /* Ajusta el ancho del botón flotante según tus preferencias */
+  height: 40px; /* Ajusta la altura del botón flotante según tus preferencias */
 }
