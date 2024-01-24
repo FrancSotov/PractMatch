@@ -10,29 +10,34 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 200px; /* Adjust the value based on your preference */
+  max-width: 200px;
   width: 100%;
-  margin-left: 40px; /* Adjust the value based on your preference */
+  margin-left: 40px; 
 }
-
 
 .google-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(to right, #4285F4, #34A853, #FBBC05, #EA4335);
+  background:#4285F4;
   color: #fff;
 }
 
 .google-icon {
-  font-size: 24px; /* Ajusta el tamaño del ícono según tus preferencias */
-  margin-right: 10px; /* Ajusta el espacio entre el ícono y el texto */
+  font-size: 24px; 
+  margin-right: 10px; 
 }
+
 ion-content {
   --background: url('../../assets/backgrounf.jpeg') no-repeat center center fixed;
   background-size: cover;
 }
 
 .login-content {
-  background-color: transparent; /* Para que no haya un fondo blanco detrás del contenido */
+  background-color: transparent; 
+}
+
+.signup-link {
+  color: #fff
+
 }
