@@ -95,20 +95,21 @@ export class PerfilPage implements OnInit {
 
   async loadUserData() {
     const user = await this.afAuth.currentUser;
-
+  
     if (user) {
       const userData = await this.authService.getUserData();
-
+  
       if (userData) {
         const { nombre, apellido, carrera, palabrasClaves } = userData;
         this.nombre = nombre || '';
         this.apellido = apellido || '';
         this.carrera = carrera || '';
         this.palabrasClavesSeleccionadas = palabrasClaves?.slice(0, 10) || [];
-        this.actualizarPalabrasClaves();
+        this.actualizarPalabrasClaves(); // Llamada a la función actualizarPalabrasClaves
       }
     }
   }
+  
 
   habilitarModificacion() {
     this.modificando = true;

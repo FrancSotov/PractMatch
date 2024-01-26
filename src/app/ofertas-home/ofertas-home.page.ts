@@ -1,5 +1,4 @@
-// ofertas-home.page.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
@@ -13,7 +12,7 @@ export class OfertasHomePage implements OnInit {
   ofertas: any[] = [];
   usuario: any;
 
-  constructor(private http: HttpClient, private authService: AuthService, private router: Router) {}
+  constructor(private http: HttpClient, private authService: AuthService, private router: Router, private ngZone: NgZone) {}
 
   ngOnInit() {
     this.obtenerOfertas();
@@ -44,7 +43,12 @@ export class OfertasHomePage implements OnInit {
 
   filtrarOfertasPorCarrera() {
     if (this.usuario && this.usuario.carrera) {
-      this.ofertas = this.ofertas.filter(oferta => oferta.carrera === this.usuario.carrera);
+      const ofertasFiltradas = [...this.ofertas];
+
+      // Utiliza ngZone.run para forzar la actualización de la vista
+      this.ngZone.run(() => {
+        this.ofertas = ofertasFiltradas.filter(oferta => oferta.carrera === this.usuario.carrera);
+      });
     }
   }
 

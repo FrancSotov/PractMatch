@@ -2,7 +2,6 @@ ion-card {
   --ion-background-color: rgba(0, 0, 0); /* Fondo con opacidad solo en ion-card */
   margin-bottom: 20px;
   width: auto;
-  opacity: 0.7;
 }
 
 ion-card-title,
@@ -20,7 +19,7 @@ ion-label {
 
 .tag-container .tag {
   background-color: #a1a1a1;
-  color: #000000;
+  color: #ffffff;
   border-radius: 15px;
   padding: 8px 12px;
   margin-bottom: 5px;
