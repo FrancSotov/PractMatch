@@ -1,57 +1,110 @@
-apply plugin: 'com.google.gms.google-services'
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+buildscript {
+  repositories {
+    google()
+    jcenter()
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'com.android.tools.build:gradle:4.2.2'
+    classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21'
+    // Agregar el complemento para los servicios de Google
+    classpath 'com.google.gms:google-services:4.3.10'
+  }
+}
+
+// Aplica el archivo de variables
+apply from: "variables.gradle"
+
+allprojects {
+  repositories {
+    google()
+    jcenter()
+    mavenCentral()
+    maven {
+      url "https://maven.google.com" // Agrega este repositorio para Firebase
+    }
+  }
+}
+
+// build.gradle para app
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
-    namespace "io.ionic.starter"
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    defaultConfig {
-        applicationId "io.ionic.starter"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        aaptOptions {
-             // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
-             // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
-            ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
-        }
+  compileSdkVersion 30
+  defaultConfig {
+    applicationId "pract.match"
+    minSdkVersion 16
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    aaptOptions {
+      ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
+  }
 }
 
 repositories {
-    flatDir{
-        dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
-    }
+  mavenCentral()
+  google()
+  jcenter()
+  flatDir {
+    dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
+  }
+  maven {
+    url "https://maven.google.com" // Agrega este repositorio para Firebase
+  }
 }
 
 dependencies {
-    implementation 'com.google.firebase:firebase-core:22.0.0' 
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
-    implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
-    implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
-    implementation project(':capacitor-android')
-    testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
-    implementation project(':capacitor-cordova-android-plugins')
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.21"
+  implementation 'commons-io:commons-io:2.7'
+  implementation 'org.apache.commons:commons-compress:1.21'
+  implementation 'com.google.guava:guava:33.0.0-jre'
+  implementation 'com.google.firebase:firebase-auth:24.10.1'
+  implementation 'com.google.firebase:firebase-database:24.10.1'
+  implementation 'org.ow2.asm:asm:9.2'
+  implementation 'org.ow2.asm:asm-analysis:9.2'
+  implementation 'org.ow2.asm:asm-commons:9.2'
+  implementation 'org.ow2.asm:asm-util:9.2'
+  implementation 'org.glassfish.jaxb:jaxb-runtime:3.0.0'
+  implementation 'net.sf.jopt-simple:jopt-simple:6.0-alpha-1'
+  implementation 'com.squareup:javapoet:1.13.0'
+  implementation 'com.google.protobuf:protobuf-java:3.19.3'
+  implementation 'com.google.protobuf:protobuf-java-util:3.19.3'
+  implementation 'com.google.code.gson:gson:2.10'
+  implementation 'io.grpc:grpc-core:1.42.0'
+  implementation 'io.grpc:grpc-netty:1.42.0'
+  implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+  implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
+  implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
+  implementation fileTree(include: ['*.jar'], dir: 'libs')
+  implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+  implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
+  implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
+  implementation project(':capacitor-android')
+  testImplementation "junit:junit:$junitVersion"
+  androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+  androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+  implementation project(':capacitor-cordova-android-plugins')
 }
 
 apply from: 'capacitor.build.gradle'
 
+// Aplica el plugin de Google Services si se encuentra el archivo google-services.json
 try {
-    def servicesJSON = file('google-services.json')
-    if (servicesJSON.text) {
-        apply plugin: 'com.google.gms.google-services'
-    }
+  def servicesJSON = file('google-services.json')
+  if (servicesJSON.text) {
+    apply plugin: 'com.google.gms.google-services'
+  }
 } catch(Exception e) {
-    logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+  logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
 }

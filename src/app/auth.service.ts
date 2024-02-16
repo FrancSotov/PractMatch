@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular'; // Importa ToastController
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,8 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private firestore: AngularFirestore,
-    private router: Router
+    private router: Router,
+    private toastController: ToastController // Agrega ToastController aquí
   ) {}
 
   getAuthInstance() {
@@ -45,12 +47,30 @@ export class AuthService {
   }
 
   async signInWithGoogle() {
-    const provider = new GoogleAuthProvider();
-    return this.afAuth.signInWithPopup(provider);
+    try {
+      const provider = new GoogleAuthProvider();
+      const result = await this.afAuth.signInWithPopup(provider);
+      if (result && result.user) {
+        // El inicio de sesión con Google fue exitoso
+        console.log('Inicio de sesión con Google exitoso:', result.user);
+        this.router.navigate(['/ofertas-home']);
+      } else {
+        // No se pudo obtener el usuario después del inicio de sesión con Google
+        this.presentToast('Error en el inicio de sesión con Google. Inténtalo de nuevo.');
+      }
+    } catch (error) {
+      console.error('Error en el inicio de sesión con Google:', error);
+      // Manejar errores
+    }
   }
 
-  signOut(): Promise<void> {
-    return this.afAuth.signOut();
+  async signOut(): Promise<void> {
+    try {
+      await this.afAuth.signOut();
+      this.router.navigate(['/']); // Redirige a la página de inicio después del cierre de sesión
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+    }
   }
 
   async registerUser(email: string, password: string, userData: any): Promise<void> {
@@ -118,5 +138,15 @@ export class AuthService {
       console.error('Error al obtener datos del usuario:', error);
       return null;
     }
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'top',
+      color: 'danger',
+    });
+    toast.present();
   }
 }

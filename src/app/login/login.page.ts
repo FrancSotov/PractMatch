@@ -49,16 +49,16 @@ export class LoginPage {
 
   async loginWithGoogle() {
     try {
-      await this.authService.signInWithGoogle();
-
+      const userCredential = await this.authService.signInWithGoogle();
+  
       // El inicio de sesión con Google fue exitoso
-      console.log('Inicio de sesión con Google exitoso');
-
+      console.log('Inicio de sesión con Google exitoso:', userCredential);
+  
       // Actualizar el estado de autenticación (si es necesario)
       this.authService.setLoggedIn(true);
-
+  
       // Redirige a la página después del inicio de sesión exitoso
-      this.navCtrl.navigateForward('/ofertas-home'); // Reemplaza '/home' con la ruta que desees después del inicio de sesión.
+      this.navCtrl.navigateForward('/ofertas-home');
     } catch (error) {
       console.error('Error en el inicio de sesión con Google:', error);
     }
