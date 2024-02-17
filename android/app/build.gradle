@@ -1,34 +1,27 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
+//file:noinspection DifferentStdlibGradleVersion
+//file:noinspection GrDeprecatedAPIUsage
 buildscript {
   repositories {
     google()
-    jcenter()
     mavenCentral()
   }
   dependencies {
     classpath 'com.android.tools.build:gradle:4.2.2'
     classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21'
-    // Agregar el complemento para los servicios de Google
-    classpath 'com.google.gms:google-services:4.3.10'
+    classpath 'com.google.gms:google-services:4.4.1'
   }
 }
 
-// Aplica el archivo de variables
 apply from: "variables.gradle"
 
 allprojects {
   repositories {
     google()
-    jcenter()
     mavenCentral()
-    maven {
-      url "https://maven.google.com" // Agrega este repositorio para Firebase
-    }
+    maven { url "https://maven.google.com" }
   }
 }
 
-// build.gradle para app
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
@@ -37,6 +30,8 @@ android {
   defaultConfig {
     applicationId "pract.match"
     minSdkVersion 16
+    //noinspection ExpiredTargetSdkVersion
+    targetSdkVersion 30
     versionCode 1
     versionName "1.0"
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -52,59 +47,43 @@ android {
   }
 }
 
-repositories {
-  mavenCentral()
-  google()
-  jcenter()
-  flatDir {
-    dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
-  }
-  maven {
-    url "https://maven.google.com" // Agrega este repositorio para Firebase
-  }
-}
-
 dependencies {
-  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.21"
-  implementation 'commons-io:commons-io:2.7'
-  implementation 'org.apache.commons:commons-compress:1.21'
-  implementation 'com.google.guava:guava:33.0.0-jre'
-  implementation 'com.google.firebase:firebase-auth:24.10.1'
-  implementation 'com.google.firebase:firebase-database:24.10.1'
-  implementation 'org.ow2.asm:asm:9.2'
-  implementation 'org.ow2.asm:asm-analysis:9.2'
-  implementation 'org.ow2.asm:asm-commons:9.2'
-  implementation 'org.ow2.asm:asm-util:9.2'
-  implementation 'org.glassfish.jaxb:jaxb-runtime:3.0.0'
-  implementation 'net.sf.jopt-simple:jopt-simple:6.0-alpha-1'
-  implementation 'com.squareup:javapoet:1.13.0'
-  implementation 'com.google.protobuf:protobuf-java:3.19.3'
-  implementation 'com.google.protobuf:protobuf-java-util:3.19.3'
-  implementation 'com.google.code.gson:gson:2.10'
-  implementation 'io.grpc:grpc-core:1.42.0'
-  implementation 'io.grpc:grpc-netty:1.42.0'
-  implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
-  implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
-  implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0" // Mantiene la versión actual
+  implementation 'commons-io:commons-io:2.11.0' // Mantiene la versión actual
+  implementation 'org.apache.commons:commons-compress:1.21' // Mantiene la versión actual
+  implementation 'com.google.guava:guava:31.0.1-jre' // Mantiene la versión actual
+  implementation 'com.google.firebase:firebase-auth:29.0.0' // Mantiene la versión actual
+  implementation 'com.google.firebase:firebase-database:20.3.0' // Mantiene la versión actual
+  implementation 'org.ow2.asm:asm:9.2' // Mantiene la versión actual
+  implementation 'org.ow2.asm:asm-analysis:9.2' // Mantiene la versión actual
+  implementation 'org.ow2.asm:asm-commons:9.2' // Mantiene la versión actual
+  implementation 'org.ow2.asm:asm-util:9.2' // Mantiene la versión actual
+  implementation 'org.glassfish.jaxb:jaxb-runtime:3.0.0' // Mantiene la versión actual
+  implementation 'net.sf.jopt-simple:jopt-simple:6.0-alpha-1' // Mantiene la versión actual
+  implementation 'com.squareup:javapoet:1.13.0' // Mantiene la versión actual
+  implementation 'com.google.protobuf:protobuf-java:3.19.3' // Mantiene la versión actual
+  implementation 'com.google.protobuf:protobuf-java-util:3.19.3' // Mantiene la versión actual
+  implementation 'com.google.code.gson:gson:2.10' // Mantiene la versión actual
+  implementation 'io.grpc:grpc-core:1.45.1' // Mantiene la versión actual
+  implementation 'io.grpc:grpc-netty:1.45.1' // Mantiene la versión actual
+  implementation "androidx.appcompat:appcompat:${androidxAppCompatVersion}"
+  implementation "androidx.coordinatorlayout:coordinatorlayout:${androidxCoordinatorLayoutVersion}"
+  implementation "androidx.core:core-splashscreen:${coreSplashScreenVersion}"
   implementation fileTree(include: ['*.jar'], dir: 'libs')
-  implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
-  implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
-  implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
   implementation project(':capacitor-android')
-  testImplementation "junit:junit:$junitVersion"
-  androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
-  androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+  testImplementation "junit:junit:${junitVersion}"
+  androidTestImplementation "androidx.test.ext:junit:${androidxJunitVersion}"
+  androidTestImplementation "androidx.test.espresso:espresso-core:${androidxEspressoCoreVersion}"
   implementation project(':capacitor-cordova-android-plugins')
 }
 
 apply from: 'capacitor.build.gradle'
 
-// Aplica el plugin de Google Services si se encuentra el archivo google-services.json
 try {
   def servicesJSON = file('google-services.json')
   if (servicesJSON.text) {
     apply plugin: 'com.google.gms.google-services'
   }
-} catch(Exception e) {
+} catch(Exception ignored) {
   logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
 }
