@@ -1,89 +1,56 @@
-//file:noinspection DifferentStdlibGradleVersion
-//file:noinspection GrDeprecatedAPIUsage
-buildscript {
-  repositories {
-    google()
-    mavenCentral()
-  }
-  dependencies {
-    classpath 'com.android.tools.build:gradle:4.2.2'
-    classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21'
-    classpath 'com.google.gms:google-services:4.4.1'
-  }
-}
-
-apply from: "variables.gradle"
-
-allprojects {
-  repositories {
-    google()
-    mavenCentral()
-    maven { url "https://maven.google.com" }
-  }
-}
-
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
 
 android {
-  compileSdkVersion 30
-  defaultConfig {
-    applicationId "pract.match"
-    minSdkVersion 16
-    //noinspection ExpiredTargetSdkVersion
-    targetSdkVersion 30
-    versionCode 1
-    versionName "1.0"
-    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    aaptOptions {
-      ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+    namespace "io.ionic.starter"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "io.ionic.starter"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        aaptOptions {
+             // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
+             // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
+            ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+        }
     }
-  }
-  buildTypes {
-    release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
-  }
 }
 
-dependencies {
-  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0" // Mantiene la versión actual
-  implementation 'commons-io:commons-io:2.11.0' // Mantiene la versión actual
-  implementation 'org.apache.commons:commons-compress:1.21' // Mantiene la versión actual
-  implementation 'com.google.guava:guava:31.0.1-jre' // Mantiene la versión actual
-  implementation 'com.google.firebase:firebase-auth:29.0.0' // Mantiene la versión actual
-  implementation 'com.google.firebase:firebase-database:20.3.0' // Mantiene la versión actual
-  implementation 'org.ow2.asm:asm:9.2' // Mantiene la versión actual
-  implementation 'org.ow2.asm:asm-analysis:9.2' // Mantiene la versión actual
-  implementation 'org.ow2.asm:asm-commons:9.2' // Mantiene la versión actual
-  implementation 'org.ow2.asm:asm-util:9.2' // Mantiene la versión actual
-  implementation 'org.glassfish.jaxb:jaxb-runtime:3.0.0' // Mantiene la versión actual
-  implementation 'net.sf.jopt-simple:jopt-simple:6.0-alpha-1' // Mantiene la versión actual
-  implementation 'com.squareup:javapoet:1.13.0' // Mantiene la versión actual
-  implementation 'com.google.protobuf:protobuf-java:3.19.3' // Mantiene la versión actual
-  implementation 'com.google.protobuf:protobuf-java-util:3.19.3' // Mantiene la versión actual
-  implementation 'com.google.code.gson:gson:2.10' // Mantiene la versión actual
-  implementation 'io.grpc:grpc-core:1.45.1' // Mantiene la versión actual
-  implementation 'io.grpc:grpc-netty:1.45.1' // Mantiene la versión actual
-  implementation "androidx.appcompat:appcompat:${androidxAppCompatVersion}"
-  implementation "androidx.coordinatorlayout:coordinatorlayout:${androidxCoordinatorLayoutVersion}"
-  implementation "androidx.core:core-splashscreen:${coreSplashScreenVersion}"
-  implementation fileTree(include: ['*.jar'], dir: 'libs')
-  implementation project(':capacitor-android')
-  testImplementation "junit:junit:${junitVersion}"
-  androidTestImplementation "androidx.test.ext:junit:${androidxJunitVersion}"
-  androidTestImplementation "androidx.test.espresso:espresso-core:${androidxEspressoCoreVersion}"
-  implementation project(':capacitor-cordova-android-plugins')
+repositories {
+  google()
+  mavenCentral()
+  // Otros repositorios aquí
 }
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
+    implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+    implementation project(':capacitor-cordova-android-plugins')
+    implementation 'com.getcapacitor:capacitor-android:3.4.0'
+  }
+
 
 apply from: 'capacitor.build.gradle'
 
 try {
-  def servicesJSON = file('google-services.json')
-  if (servicesJSON.text) {
-    apply plugin: 'com.google.gms.google-services'
-  }
-} catch(Exception ignored) {
-  logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+    def servicesJSON = file('google-services.json')
+    if (servicesJSON.text) {
+        apply plugin: 'com.google.gms.google-services'
+    }
+} catch(Exception e) {
+    logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
 }

@@ -1,8 +1,0 @@
-ext {
-  androidxAppCompatVersion = '1.6.1'
-  androidxCoordinatorLayoutVersion = '1.2.0'
-  coreSplashScreenVersion = '1.0.1'  // Actualizado a la última versión
-  junitVersion = '4.13.2'
-  androidxJunitVersion = '1.1.5'
-  androidxEspressoCoreVersion = '3.5.1'
-}
