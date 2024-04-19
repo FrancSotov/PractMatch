@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'Tinderlaboral',
-  appName: 'tinderLaboral',
+  appId: 'pract.match',
+  appName: 'PractMatch',
   webDir: 'www',
   server: {
     androidScheme: 'https'
