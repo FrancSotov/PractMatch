@@ -1,56 +1,60 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "io.ionic.starter"
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    defaultConfig {
-        applicationId "io.ionic.starter"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        aaptOptions {
-             // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
-             // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
-            ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
-        }
+  namespace "com.tinderlaboral.app"
+  compileSdkVersion 34
+  defaultConfig {
+    applicationId "com.tinderlaboral.app"
+    minSdkVersion 23
+    targetSdkVersion 34
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
+  }
 }
 
 repositories {
-  google()
-  mavenCentral()
-  // Otros repositorios aquí
+  flatDir {
+    dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
+  }
 }
 
-
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
-    implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
-    implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
-    testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
-    implementation project(':capacitor-cordova-android-plugins')
-    implementation 'com.getcapacitor:capacitor-android:3.4.0'
-  }
+  implementation fileTree(include: ['*.jar'], dir: 'libs')
+  implementation "androidx.appcompat:appcompat:1.6.1"
+  implementation "androidx.coordinatorlayout:coordinatorlayout:1.2.0"
+  implementation "androidx.core:core-splashscreen:1.0.0"
+  implementation project(':capacitor-android')
+  testImplementation "junit:junit:4.13.2"
+  androidTestImplementation "androidx.test.ext:junit:1.1.5"
+  androidTestImplementation "androidx.test.espresso:espresso-core:3.5.1"
+  implementation project(':capacitor-cordova-android-plugins')
 
+  // Importa el BoM de Firebase
+  implementation platform('com.google.firebase:firebase-bom:33.1.1')
+
+  // Agrega las dependencias de Firebase que necesites
+  implementation 'com.google.firebase:firebase-analytics'
+  implementation 'com.google.firebase:firebase-auth'
+
+  // Añade la dependencia de Google Sign-In
+  implementation 'com.google.android.gms:play-services-auth:20.5.0'
+}
 
 apply from: 'capacitor.build.gradle'
+apply plugin: 'com.google.gms.google-services'
 
 try {
-    def servicesJSON = file('google-services.json')
-    if (servicesJSON.text) {
-        apply plugin: 'com.google.gms.google-services'
-    }
+  def servicesJSON = file('google-services.json')
+  if (servicesJSON.text) {
+    apply plugin: 'com.google.gms.google-services'
+  }
 } catch(Exception e) {
-    logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+  logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
 }

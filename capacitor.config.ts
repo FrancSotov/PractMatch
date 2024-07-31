@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'Tinderlaboral',
+  appId: 'com.tinderlaboral.app',
   appName: 'tinderLaboral',
   webDir: 'www',
   server: {

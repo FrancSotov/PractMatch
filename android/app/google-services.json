@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "584537492478",
+    "project_id": "practmatch",
+    "storage_bucket": "practmatch.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584537492478:android:28feeffe5cfabbb1880eaf",
+        "android_client_info": {
+          "package_name": "com.tinderlaboral.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "584537492478-p5mvc2bdtlvbn3i2a83rbqeu4kgl6o8j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tinderlaboral.app",
+            "certificate_hash": "985b0790b6b0cbebf7b41daf095c604edcefcddd"
+          }
+        },
+        {
+          "client_id": "584537492478-kl6nf64pio15rugq2317ilgmh2ltphsj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDR0-GkfbwStikOMqAOZE83LV0_L8GF1g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "584537492478-kl6nf64pio15rugq2317ilgmh2ltphsj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
